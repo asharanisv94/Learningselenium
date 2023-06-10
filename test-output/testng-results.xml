@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-06-10T15:48:25 EDT" name="Default suite" finished-at="2023-06-10T15:48:53 EDT" duration-ms="27912">
+    <groups>
+    </groups>
+    <test started-at="2023-06-10T15:48:25 EDT" name="Default test" finished-at="2023-06-10T15:48:53 EDT" duration-ms="27912">
+      <class name="com.asha.learninigselenium.RegistrationAndLoginDemo">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:25 EDT" name="setUp" finished-at="2023-06-10T15:48:29 EDT" duration-ms="4359" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="validateSignUp()[pri:1, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:29 EDT" name="validateSignUp" finished-at="2023-06-10T15:48:33 EDT" duration-ms="3627" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateSignUp -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:33 EDT" name="tearDown" finished-at="2023-06-10T15:48:33 EDT" duration-ms="58" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:33 EDT" name="setUp" finished-at="2023-06-10T15:48:37 EDT" duration-ms="4373" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="validateLogin()[pri:2, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:37 EDT" name="validateLogin" finished-at="2023-06-10T15:48:39 EDT" duration-ms="1718" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:39 EDT" name="tearDown" finished-at="2023-06-10T15:48:39 EDT" duration-ms="54" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:39 EDT" name="setUp" finished-at="2023-06-10T15:48:44 EDT" duration-ms="4626" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="validateChangePassword()[pri:3, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:44 EDT" name="validateChangePassword" finished-at="2023-06-10T15:48:47 EDT" duration-ms="3356" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateChangePassword -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:47 EDT" name="tearDown" finished-at="2023-06-10T15:48:47 EDT" duration-ms="55" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:47 EDT" name="setUp" finished-at="2023-06-10T15:48:51 EDT" duration-ms="4040" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="loginWithCurrentPassword()[pri:4, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:51 EDT" name="loginWithCurrentPassword" finished-at="2023-06-10T15:48:53 EDT" duration-ms="1564" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginWithCurrentPassword -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.asha.learninigselenium.RegistrationAndLoginDemo@67080771]" started-at="2023-06-10T15:48:53 EDT" name="tearDown" finished-at="2023-06-10T15:48:53 EDT" duration-ms="53" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.asha.learninigselenium.RegistrationAndLoginDemo -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
