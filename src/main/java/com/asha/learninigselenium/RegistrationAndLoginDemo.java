@@ -3,7 +3,6 @@ package com.asha.learninigselenium;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +15,7 @@ public class RegistrationAndLoginDemo {
 
 	WebDriver wd;
 	WebDriverWait wait;
-	String email_id = "xyz11@gmail.com";
+	String email_id = "xyz15@gmail.com";
 
 	@BeforeMethod
 	public void setUp() {
@@ -31,7 +30,8 @@ public class RegistrationAndLoginDemo {
 
 	@Test(priority = 1)
 	public void validateSignUp() {
-		System.out.println("Inside validateRegistration");
+		System.out
+				.println("Scenario: validate user is able to register if all mandatory fields are provided correctly");
 
 		WebElement myAccount = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
@@ -69,8 +69,7 @@ public class RegistrationAndLoginDemo {
 
 		WebElement radioButtonNo = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='radio'][value='0']")));
-		// boolean isNoButtonSelected = radioButtonNo.isSelected();
-		// Assert.assertTrue(isNoButtonSelected, "Radio Button No is not selected");
+
 		radioButtonNo.click();
 
 		WebElement checkBox = wait
@@ -91,9 +90,68 @@ public class RegistrationAndLoginDemo {
 
 	}
 
-	@Test(priority = 2)
+//	@Test(priority = 2)
+	public void validateSignUpWhenPasswordAndConfirmPasswordIsDifferent() {
+		System.out.println(
+				"Scenario: Validate Correct error message (Password confirmation does not match password!) is displayed when user provided Password and Confirm password are different");
+		String emailid = "test001@gmail.com";
+
+		WebElement myAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
+		myAccount.click();
+
+		WebElement register = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Register']")));
+		register.click();
+
+		System.out.println("Page title: " + wd.getTitle());
+		Assert.assertEquals(wd.getTitle(), "Register Account", "Incorrect page loaded");
+
+		WebElement firstName = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-firstname")));
+		firstName.sendKeys("Asha");
+
+		WebElement lastName = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-lastname")));
+		lastName.sendKeys("Jay");
+
+		WebElement email = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
+		email.sendKeys(emailid);
+
+		WebElement telephone = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-telephone")));
+		telephone.sendKeys("123456789");
+
+		WebElement password = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-password")));
+		password.sendKeys("password1");
+
+		WebElement passwordConfirm = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-confirm")));
+		passwordConfirm.sendKeys("password3");
+
+		WebElement radioButtonNo = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='radio'][value='0']")));
+		radioButtonNo.click();
+
+		WebElement checkBox = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='agree']")));
+		checkBox.click();
+
+		WebElement continueBtn = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Continue']")));
+		continueBtn.click();
+		WebElement passwordConfrimationError = wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class='text-danger' and text()='Password confirmation does not match password!']")));
+
+		Assert.assertEquals(passwordConfrimationError.getText(), "Password confirmation does not match password!",
+				"Invalid message displayed when password and Password Confirm are different");
+
+	}
+
+	@Test(priority = 3)
 	public void validateLogin() {
-		System.out.println("Inside validateLogin");
+		System.out.println("Scneario: Validate Login when user provided valid email id and password");
 
 		WebElement myAccount = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
@@ -122,9 +180,79 @@ public class RegistrationAndLoginDemo {
 		Assert.assertEquals(wd.getTitle(), "My Account", "Login failed");
 	}
 
-	@Test(priority = 3)
+	//@Test(priority = 4)
+	public void validateLoginWhenUserProvidedInvalidEmailID() {
+		System.out.println(
+				"Scenario: When user provided incorrect email id not registered before, User will get an error message 'Warning: No match for E-Mail Address and/or Password.'");
+
+		WebElement myAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
+
+		myAccount.click();
+
+		WebElement Login = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Login']")));
+		Login.click();
+
+		System.out.println("Page title: " + wd.getTitle());
+		Assert.assertEquals(wd.getTitle(), "Account Login", "Invalid page");
+
+		WebElement returningCustomerEmailID = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
+		returningCustomerEmailID.sendKeys("invalid001@gmailinvalid.com");
+
+		WebElement returningCustomerPassword = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-password")));
+		returningCustomerPassword.sendKeys("password1");
+
+		WebElement loginBtn = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Login']")));
+		loginBtn.click();
+		WebElement LoginWarningMesasge = wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.xpath("//div[@class=\"alert alert-danger alert-dismissible\"]")));
+
+		Assert.assertEquals(LoginWarningMesasge.getText(), "Warning: No match for E-Mail Address and/or Password.",
+				"Invalid warning message displayed when user provided invalid email id");
+
+	}
+
+//	@Test(priority = 5)
+	public void validateLoginWhenUserProvidedInvalidPassword() {
+		System.out.println(
+				"Scenario: When user provided incorrect password, User will get an error message 'Warning: No match for E-Mail Address and/or Password.'");
+
+		WebElement myAccount = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
+
+		myAccount.click();
+
+		WebElement Login = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Login']")));
+		Login.click();
+
+		System.out.println("Page title: " + wd.getTitle());
+		Assert.assertEquals(wd.getTitle(), "Account Login", "Invalid page");
+
+		WebElement returningCustomerEmailID = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
+		returningCustomerEmailID.sendKeys("xyz8@gmail.com");
+
+		WebElement returningCustomerPassword = wait
+				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-password")));
+		returningCustomerPassword.sendKeys("passwordInvalid");
+
+		WebElement loginBtn = wait
+				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Login']")));
+		loginBtn.click();
+		WebElement LoginWarningMesasge = wait.until(ExpectedConditions
+				.presenceOfElementLocated(By.xpath("//div[@class=\"alert alert-danger alert-dismissible\"]")));
+
+		Assert.assertEquals(LoginWarningMesasge.getText(), "Warning: No match for E-Mail Address and/or Password.",
+				"Invalid warning message displayed when user provided incorrect password");
+
+	}
+
+	@Test(priority = 6)
 	public void validateChangePassword() {
-		System.out.println("Inside validateChangePassword");
+		System.out.println("Scenario : User is able to change the password successfully");
 
 		WebElement myAccount = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
@@ -180,8 +308,9 @@ public class RegistrationAndLoginDemo {
 
 	}
 
-	@Test(priority = 4)
-	public void loginWithCurrentPassword() {
+	@Test(priority = 7)
+	public void loginWithCorrectCurrentPassword() {
+		System.out.println("Scenario: User is able to login with Updated password");
 		WebElement myAccount = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
 
