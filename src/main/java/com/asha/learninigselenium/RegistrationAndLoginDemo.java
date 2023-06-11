@@ -16,7 +16,7 @@ public class RegistrationAndLoginDemo {
 
 	WebDriver wd;
 	WebDriverWait wait;
-	String email_id = "xyz9@gmail.com";
+	String email_id = "xyz11@gmail.com";
 
 	@BeforeMethod
 	public void setUp() {
@@ -103,6 +103,9 @@ public class RegistrationAndLoginDemo {
 		WebElement Login = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Login']")));
 		Login.click();
 
+		System.out.println("Page title: " + wd.getTitle());
+		Assert.assertEquals(wd.getTitle(), "Account Login", "Invalid page");
+
 		WebElement returningCustomerEmailID = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
 		returningCustomerEmailID.sendKeys(email_id);
@@ -130,6 +133,9 @@ public class RegistrationAndLoginDemo {
 
 		WebElement Login = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Login']")));
 		Login.click();
+
+		System.out.println("Page title: " + wd.getTitle());
+		Assert.assertEquals(wd.getTitle(), "Account Login", "Invalid page");
 
 		WebElement returningCustomerEmailID = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
@@ -183,6 +189,9 @@ public class RegistrationAndLoginDemo {
 
 		WebElement Login = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Login']")));
 		Login.click();
+
+		System.out.println("Page title: " + wd.getTitle());
+		Assert.assertEquals(wd.getTitle(), "Account Login", "Invalid page");
 
 		WebElement returningCustomerEmailID = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
