@@ -1,5 +1,7 @@
 package com.asha.learninigselenium;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,10 +17,14 @@ public class RegistrationAndLoginDemo {
 
 	WebDriver wd;
 	WebDriverWait wait;
-	String email_id = "xyz15@gmail.com";
+	Random random = new Random();
+
+	String randString = String.valueOf(random.nextInt(1000));
+	String email_id = "xyz" + randString + "@gmail.com";
 
 	@BeforeMethod
 	public void setUp() {
+
 		System.setProperty("webdriver.chrome.driver", "C:\\Driver\\ChromeDriver\\ChromeDriver.exe");
 		wd = new ChromeDriver();
 
@@ -30,6 +36,7 @@ public class RegistrationAndLoginDemo {
 
 	@Test(priority = 1)
 	public void validateSignUp() {
+		System.out.println(email_id);
 		System.out
 				.println("Scenario: validate user is able to register if all mandatory fields are provided correctly");
 
@@ -46,31 +53,32 @@ public class RegistrationAndLoginDemo {
 
 		WebElement firstName = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-firstname")));
-		firstName.sendKeys("Asha");
 
 		WebElement lastName = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-lastname")));
-		lastName.sendKeys("Jay");
 
 		WebElement email = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
-		email.sendKeys(email_id);
 
 		WebElement telephone = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-telephone")));
-		telephone.sendKeys("123456789");
 
 		WebElement password = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-password")));
-		password.sendKeys("password1");
 
 		WebElement passwordConfirm = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-confirm")));
-		passwordConfirm.sendKeys("password1");
 
 		WebElement radioButtonNo = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='radio'][value='0']")));
 
 		radioButtonNo.click();
+
+		firstName.sendKeys("Asha");
+		lastName.sendKeys("Jay");
+		email.sendKeys(email_id);
+		telephone.sendKeys("123456789");
+		password.sendKeys("password1");
+		passwordConfirm.sendKeys("password1");
 
 		WebElement checkBox = wait
 				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='agree']")));
@@ -84,9 +92,6 @@ public class RegistrationAndLoginDemo {
 
 		System.out.println("Page title: " + wd.getTitle());
 		Assert.assertEquals(wd.getTitle(), "Your Account Has Been Created!", "Registration Failed");
-		WebElement continueAccountBtn = wait
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[text()='Continue']")));
-		continueAccountBtn.click();
 
 	}
 
@@ -109,33 +114,34 @@ public class RegistrationAndLoginDemo {
 
 		WebElement firstName = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-firstname")));
-		firstName.sendKeys("Asha");
 
 		WebElement lastName = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-lastname")));
-		lastName.sendKeys("Jay");
 
 		WebElement email = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-email")));
-		email.sendKeys(emailid);
 
 		WebElement telephone = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-telephone")));
-		telephone.sendKeys("123456789");
 
 		WebElement password = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-password")));
-		password.sendKeys("password1");
 
 		WebElement passwordConfirm = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#input-confirm")));
-		passwordConfirm.sendKeys("password3");
 
 		WebElement radioButtonNo = wait
 				.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='radio'][value='0']")));
-		radioButtonNo.click();
 
 		WebElement checkBox = wait
 				.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[name='agree']")));
+
+		firstName.sendKeys("Asha");
+		lastName.sendKeys("Jay");
+		email.sendKeys(emailid);
+		telephone.sendKeys("123456789");
+		password.sendKeys("password1");
+		passwordConfirm.sendKeys("password3");
+		radioButtonNo.click();
 		checkBox.click();
 
 		WebElement continueBtn = wait
@@ -180,7 +186,7 @@ public class RegistrationAndLoginDemo {
 		Assert.assertEquals(wd.getTitle(), "My Account", "Login failed");
 	}
 
-	//@Test(priority = 4)
+	// @Test(priority = 4)
 	public void validateLoginWhenUserProvidedInvalidEmailID() {
 		System.out.println(
 				"Scenario: When user provided incorrect email id not registered before, User will get an error message 'Warning: No match for E-Mail Address and/or Password.'");
